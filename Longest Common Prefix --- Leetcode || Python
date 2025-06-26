@@ -1,0 +1,38 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        
+        prefix = ""
+        for ch in zip(*strs):                                       
+            if len(set(ch)) == 1:
+                prefix += ch[0]
+            else:
+                break
+        return prefix
+
+
+
+
+#---------------<< DESCRIPTION >>----------------------
+"""
+
+            Step - 1
+
+Position →  0   1   2   3   4   5
+            ↓   ↓   ↓   ↓   ↓   ↓
+flower     [f] [l] [o] [w] [e] [r]
+flask      [f] [l] [a] [s] [k]
+float      [f] [l] [o] [a] [t]
+
+            Step - 2
+
+zip(*l) groups the columns like this:
+
+  ('f', 'f', 'f'),   ← all same ✅ add 'f' to prefix
+  ('l', 'l', 'l'),   ← all same ✅ add 'l' to prefix
+  ('o', 'a', 'o'),   ← not same ❌ stop here
+
+            Step - 3 
+Only the first 2 columns had all same letters → 'f' + 'l' = "fl"
+So, the longest common prefix is "fl"
+
+"""
